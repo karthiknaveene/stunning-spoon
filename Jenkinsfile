@@ -1,3 +1,5 @@
+// Jenkinsfile_aborted.groovy
+
 pipeline {
     agent any
 
@@ -43,10 +45,17 @@ pipeline {
             }
         }
 
+        
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
                 sleep 5
+                
+                // Simulating Aborted Status
+                script {
+                    currentBuild.result = 'ABORTED'  // Marking the build as aborted
+                    echo 'Build was aborted during deployment.'
+                }
             }
         }
     }
