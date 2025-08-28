@@ -1,3 +1,5 @@
+// Jenkinsfile_unstable.groovy
+
 pipeline {
     agent any
 
@@ -38,6 +40,12 @@ pipeline {
             steps {
                 echo 'Running Unit Tests...'
                 sleep 10
+                
+                // Simulating Unstable Status by setting the build to unstable
+                script {
+                    currentBuild.result = 'UNSTABLE'  // Marking the build as unstable
+                }
+                
                 echo 'Running Integration Tests...'
                 sleep 5
             }
@@ -47,8 +55,6 @@ pipeline {
             steps {
                 echo 'Deploying...'
                 sleep 5
-                // Simulating failure in the final stage
-                error "Deployment failed due to an issue in the final step"
             }
         }
     }
