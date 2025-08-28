@@ -47,6 +47,8 @@ pipeline {
             steps {
                 echo 'Deploying...'
                 sleep 5
+                // Simulating failure in the final stage
+                error "Deployment failed due to an issue in the final step"
             }
         }
     }
